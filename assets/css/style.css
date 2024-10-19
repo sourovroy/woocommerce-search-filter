@@ -1,4 +1,115 @@
 .ws-filter-form {
 	width: 100%;
 	max-width: 1100px;
+	margin-bottom: 30px;
+}
+
+.ws-filter-items {
+	display: flex;
+	flex-wrap: wrap;
+}
+.ws-filter-item {
+	width: 33.33333333%;
+	flex-shrink: 0;
+	margin-bottom: 30px;
+	padding: 0 15px;
+}
+
+.ws-filter {
+	display: flex;
+}
+.ws-categories {
+	width: 30%;
+	flex-shrink: 0;
+}
+.ws-form-and-items {
+	width: 70%;
+	flex-shrink: 0;
+}
+
+.ws-categories ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.ws-categories li {
+	margin: 0;
+	padding: 0;
+}
+.hentry .entry-content .ws-categories ul li a {
+	text-decoration: none;
+	font-size: 18px;
+	color: #88857f;
+}
+.ws-form-and-items {
+	position: relative;
+	min-height: 300px;
+}
+.ws-loader {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.8);
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ws-spin-loader {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: relative;
+	animation: rotate 1s linear infinite
+}
+
+.ws-spin-loader::before,
+.ws-spin-loader::after {
+	content: "";
+	box-sizing: border-box;
+	position: absolute;
+	inset: 0px;
+	border-radius: 50%;
+	border: 5px solid #88857f;
+	animation: prixClipFix 2s linear infinite;
+}
+
+.ws-spin-loader::after {
+	border-color: #FF3D00;
+	animation: prixClipFix 2s linear infinite, rotate 0.5s linear infinite reverse;
+	inset: 6px;
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg)
+	}
+
+	100% {
+		transform: rotate(360deg)
+	}
+}
+
+@keyframes prixClipFix {
+	0% {
+		clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+	}
+
+	25% {
+		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+	}
+
+	50% {
+		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+	}
+
+	75% {
+		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
+	}
+
+	100% {
+		clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
+	}
 }
