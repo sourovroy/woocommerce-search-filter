@@ -21,6 +21,7 @@ class WooCommerce_Search_Filter {
 		new WS_Filter\Shortcode();
 		new WS_Filter\Enqueue();
 		new WS_Filter\Ajax();
+		new WS_Filter\Cache();
 	}
 
 	private function define_constants() {

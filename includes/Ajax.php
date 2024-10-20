@@ -45,22 +45,30 @@ class Ajax {
 			);
 		}
 
-		$query = new WC_Product_Query( $args );
 
-		$products = array();
+		$cache_key = 'ws_filter_cache_' . $cat_id . '_' . $search;
 
-		foreach ( $query->get_products() as $product ) {
-			$products[] = array(
-				'id'        => $product->get_id(),
-				'name'      => $product->get_name(),
-				'image'     => $product->get_image(),
-				'permalink' => $product->get_permalink(),
-			);
+		$products = get_transient( $cache_key );
+
+		if ( $products === false ) {
+			error_log('query run');
+			$query = new WC_Product_Query( $args );
+
+			$products = array();
+
+			foreach ( $query->get_products() as $product ) {
+				$products[] = array(
+					'id'        => $product->get_id(),
+					'name'      => $product->get_name(),
+					'image'     => $product->get_image(),
+					'permalink' => $product->get_permalink(),
+				);
+			}
+
+			set_transient( $cache_key, $products, (60 * 60) );
 		}
 
-		wp_send_json_success(
-			$products
-		);
+		wp_send_json_success( $products );
 	}
 
 	public function get_categories() {
