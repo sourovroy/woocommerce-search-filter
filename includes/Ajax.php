@@ -45,13 +45,11 @@ class Ajax {
 			);
 		}
 
-
 		$cache_key = 'ws_filter_cache_' . $cat_id . '_' . $search;
 
 		$products = get_transient( $cache_key );
 
 		if ( $products === false ) {
-			error_log('query run');
 			$query = new WC_Product_Query( $args );
 
 			$products = array();
@@ -65,7 +63,7 @@ class Ajax {
 				);
 			}
 
-			set_transient( $cache_key, $products, (60 * 60) );
+			set_transient( $cache_key, $products, (60 * 60 * 24) );
 		}
 
 		wp_send_json_success( $products );
